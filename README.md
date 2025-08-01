@@ -4,6 +4,12 @@
 
 **InnerBrain is a lightweight, open source link vault that lets you save and categorize all your favorite resources—websites, YouTube videos, Instagram/Facebook reels, articles, podcasts, and more—in one place.**
 
+## Tech Stack
+
+- **Frontend**: React + TypeScript, Vite, Tailwind CSS
+- **Backend**: Node.js + Express (TypeScript)
+- **Database**: MongoDB (with Mongoose)
+
 ## Think of it as your digital brain extension:
 
 - **🗂️ Centralized Storage**  
@@ -17,6 +23,9 @@
 
 - **⚡️ Lightweight & Extensible**  
   Minimal dependencies, easy to self-host, and simple to extend with your own plugins or scripts.
+
+**🌟 Open Source & Contributions Welcome**  
+This project is fully open source. Whether you’re filing issues, suggesting features, improving documentation, or submitting code, your contributions are appreciated and will help make InnerBrain better for everyone. Please read our [Contributing Guidelines](CONTRIBUTING.md) to get started!
 
 ## 🚀 Getting Started
 
