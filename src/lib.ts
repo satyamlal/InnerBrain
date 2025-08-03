@@ -3,4 +3,6 @@ import express from "express";
 import bcrypt from "bcrypt";
 import zod from "zod";
 
-export { jwt, express, bcrypt, zod };
+const router = express.Router();
+
+export { jwt, express, bcrypt, zod, router };

@@ -1,15 +1,18 @@
-import signUpRouter from "./routes/signup.js";
-import signInRouter from "./routes/signin.js";
-import dotenv from "dotenv";
-import { express } from "./lib.js";
+import "./config";
+import signUpRouter from "./routes/signup";
+import signInRouter from "./routes/signin";
+import { express } from "./lib";
 
-dotenv.config();
 const app = express();
+const PORT = process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: true }));
-
 app.use("/api/v1", signUpRouter);
 app.use("/api/v1", signInRouter);
+
+app.listen(PORT, () => {
+  console.log(`Server is listening to ${PORT}`);
+});
 
 // app.post("/api/v1/content", (req, res) => {
 //   res.json({

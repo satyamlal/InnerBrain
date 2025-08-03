@@ -1,30 +1,28 @@
-import { zod, express, bcrypt } from "../lib.js";
-import { UserModel } from "../db.js";
+import { UserModel } from "../db";
+import { router, zod, bcrypt } from "../lib";
 
-const router = express.Router();
-
-const signUpSchema = zod.object({
+const signupSchema = zod.object({
   username: zod.string().min(3),
   password: zod.string(),
 });
 
 router.post("/signup", async (req, res) => {
-  const result = signUpSchema.safeParse(req.body);
+  const result = signupSchema.safeParse(req.body);
 
   if (!result.success) {
     return res.status(400).json({
-      message: "Wrong Inputs!",
+      message: "Wrong inputs!",
       error: result.error.issues,
     });
   }
-  const { username, password } = result.data;
 
+  const { username, password } = result.data;
   const existingUser = await UserModel.findOne({
     username,
   });
 
   if (existingUser) {
-    return res.status(200).json({
+    return res.status(400).json({
       message: "Username already taken!",
     });
   }
@@ -36,8 +34,8 @@ router.post("/signup", async (req, res) => {
     password: hashedPassword,
   });
 
-  res.json({
-    message: "User created successfully!",
+  res.status(200).json({
+    message: "Sign up successfull!",
   });
 });
 

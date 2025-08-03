@@ -1,10 +1,6 @@
-import { zod, jwt, express, bcrypt } from "../lib.js";
-import { UserModel } from "../db.js";
-import dotenv from "dotenv";
-
-dotenv.config();
-
-const router = express.Router();
+import "../config";
+import { zod, jwt, router, bcrypt } from "../lib";
+import { UserModel } from "../db";
 
 const signInSchema = zod.object({
   username: zod.string(),
