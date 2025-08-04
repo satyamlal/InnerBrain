@@ -1,5 +1,5 @@
-import { UserModel } from "../db";
-import { router, zod, bcrypt } from "../lib";
+import { UserModel } from "../models/user.model.js";
+import { router, zod, bcrypt } from "../lib.js";
 
 const signupSchema = zod.object({
   username: zod.string().min(3),

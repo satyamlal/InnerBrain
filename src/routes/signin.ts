@@ -1,11 +1,15 @@
-import "../config";
-import { zod, jwt, router, bcrypt } from "../lib";
-import { UserModel } from "../db";
+import { jwtSecret } from "../config.js";
+import { zod, jwt, router, bcrypt } from "../lib.js";
+import { UserModel } from "../models/user.model.js";
 
 const signInSchema = zod.object({
   username: zod.string(),
   password: zod.string(),
 });
+
+if (!jwtSecret) {
+  throw new Error("JWT_PASSWORD is not set in .env file!");
+}
 
 router.post("/signin", async (req, res) => {
   const result = signInSchema.safeParse(req.body);
@@ -39,7 +43,7 @@ router.post("/signin", async (req, res) => {
     {
       userId: user._id,
     },
-    process.env.JWT_PASSWORD as string
+    jwtSecret
   );
 
   res.status(400).json({

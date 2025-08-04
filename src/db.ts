@@ -1,10 +1,17 @@
-import mongoose from "mongoose";
+import { mongoose } from "./lib.js";
+import { MONGO_URI } from "./config.js";
 
-const UserSchema = new mongoose.Schema({
-  username: { unique: true, type: String, required: true },
-  password: { type: String, required: true },
-});
+export default async function connectDB() {
+  if (!MONGO_URI) {
+    throw new Error("MONGO_URI is not defined in the environment variables!");
+  }
 
-const UserModel = mongoose.model("User", UserSchema);
-
-export { UserModel };
+  try {
+    await mongoose.connect(MONGO_URI).then(() => {
+      console.log("✅ Connected to MongoDB!");
+    });
+  } catch (error) {
+    console.log("❌ MongoDB connection failed:", error);
+    process.exit(1);
+  }
+}

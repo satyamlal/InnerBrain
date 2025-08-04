@@ -1,17 +1,23 @@
-import "./config";
-import signUpRouter from "./routes/signup";
-import signInRouter from "./routes/signin";
-import { express } from "./lib";
+import connectDB from "./db.js";
+import signUpRouter from "./routes/signup.js";
+import signInRouter from "./routes/signin.js";
+import { express } from "./lib.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(express.urlencoded({ extended: true }));
+// MongoDB connection
+await connectDB();
+
+app.use(express.json()); // handles JSON data from Postman
+app.use(express.urlencoded({ extended: true })); // handles form data if ever needed
+
+// Routes
 app.use("/api/v1", signUpRouter);
 app.use("/api/v1", signInRouter);
 
-app.listen(PORT, () => {
-  console.log(`Server is listening to ${PORT}`);
+app.listen(PORT, async () => {
+  console.log(`🚀 Server listening on port ${PORT}`);
 });
 
 // app.post("/api/v1/content", (req, res) => {
