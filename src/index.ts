@@ -1,6 +1,7 @@
 import connectDB from "./db.js";
 import signUpRouter from "./routes/signup.js";
 import signInRouter from "./routes/signin.js";
+import AddContentRouter from "./routes/content.js";
 import { express } from "./lib.js";
 
 const app = express();
@@ -15,6 +16,7 @@ app.use(express.urlencoded({ extended: true })); // handles form data if ever ne
 // Routes
 app.use("/api/v1", signUpRouter);
 app.use("/api/v1", signInRouter);
+app.use("/api/v1", AddContentRouter);
 
 app.listen(PORT, async () => {
   console.log(`🚀 Server listening on port ${PORT}`);

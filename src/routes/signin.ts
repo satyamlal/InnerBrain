@@ -1,10 +1,10 @@
 import { jwtSecret } from "../config.js";
-import { zod, jwt, router, bcrypt } from "../lib.js";
+import { z, jwt, router, bcrypt } from "../lib.js";
 import { UserModel } from "../models/user.model.js";
 
-const signInSchema = zod.object({
-  username: zod.string(),
-  password: zod.string(),
+const signInSchema = z.object({
+  username: z.string(),
+  password: z.string(),
 });
 
 if (!jwtSecret) {

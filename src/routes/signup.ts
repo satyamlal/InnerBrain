@@ -1,10 +1,12 @@
 import { UserModel } from "../models/user.model.js";
-import { router, zod, bcrypt } from "../lib.js";
+import { router, z, bcrypt } from "../lib.js";
 
-const signupSchema = zod.object({
-  email: zod.string(),
-  username: zod.string().min(3),
-  password: zod.string(),
+const signupSchema = z.object({
+  email: z.email({ message: "Invalid email address" }),
+  username: z.string().min(3, { message: "Username is too short" }),
+  password: z
+    .string()
+    .min(6, { message: "Password must be at least 6 characters" }),
 });
 
 router.post("/signup", async (req, res) => {
@@ -19,18 +21,22 @@ router.post("/signup", async (req, res) => {
     }
 
     const { email, username, password } = result.data;
+
     const existingUser = await UserModel.findOne({
-      username,
+      $or: [{ username }, { email }],
     });
 
-    const existingEmail = await UserModel.findOne({
-      email,
-    });
-
-    if (existingUser || existingEmail) {
-      return res.status(403).json({
-        message: "User already exists!",
-      });
+    if (existingUser) {
+      if (existingUser.username === username) {
+        return res.status(403).json({
+          message: "Username already taken!",
+        });
+      }
+      if (existingUser.email === email) {
+        return res.status(403).json({
+          message: "Email already exists!",
+        });
+      }
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);

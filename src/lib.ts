@@ -1,9 +1,9 @@
 import jwt from "jsonwebtoken";
 import express from "express";
 import bcrypt from "bcrypt";
-import zod from "zod";
+import z from "zod";
 import mongoose from "mongoose";
 
 const router = express.Router();
 
-export { jwt, express, bcrypt, zod, router, mongoose };
+export { jwt, express, bcrypt, z, router, mongoose };
