@@ -1,8 +1,8 @@
-# InnerBrain
+# SecondBrain
 
 [![Open Source](https://img.shields.io/badge/license-MIT-blue.svg)]()
 
-**InnerBrain is a lightweight, open source link vault that lets you save and categorize all your favorite resources—websites, YouTube videos, Instagram/Facebook reels, articles, podcasts, and more—in one place.**
+**SecondBrain is a lightweight, open source link vault that lets you save and categorize all your favorite resources—websites, YouTube videos, Instagram/Facebook reels, articles, podcasts, and more—in one place.**
 
 ## Tech Stack
 
@@ -25,12 +25,12 @@
   Minimal dependencies, easy to self-host, and simple to extend with your own plugins or scripts.
 
 **🌟 Open Source & Contributions Welcome**  
-This project is fully open source. Whether you’re filing issues, suggesting features, improving documentation, or submitting code, your contributions are appreciated and will help make InnerBrain better for everyone. Please read our [Contributing Guidelines](CONTRIBUTING.md) to get started!
+This project is fully open source. Whether you’re filing issues, suggesting features, improving documentation, or submitting code, your contributions are appreciated and will help make SecondBrain better for everyone.
 
 ## 🚀 Getting Started
 
 1. **Clone**
    ```bash
-   git clone https://github.com/satyamlal/InnerBrain.git
-   cd InnerBrain
+   git clone https://github.com/satyamlal/SecondBrain.git
+   cd SecondBrain
    ```
