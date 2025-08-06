@@ -57,15 +57,17 @@ router.post(
       );
 
       // Step 2: Create content with ObjectId references
-      await AddContentModel.create({
+      const content = await AddContentModel.create({
         title,
         link,
         userId,
         tags: tagsObjectIds,
       });
+      const contentId = content._id;
 
       res.status(201).json({
         message: "Content Added!",
+        contentId,
       });
     } catch (error) {
       console.error("Content creation error:", error);
@@ -76,5 +78,11 @@ router.post(
     }
   }
 );
+
+// router.post(
+//   "/deletecontent",
+//   userMiddleware,
+//   async (req: Request, res: Response) => {}
+// );
 
 export default router;

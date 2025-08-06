@@ -1,36 +1,10 @@
 import { mongoose } from "../lib.js";
 
-// const AddContentSchema = new mongoose.Schema({
-//   title: { unique: true, type: String, required: true },
-//   link: { unique: true, type: String, required: true },
-//   tags: [
-//     { unique: true, type: mongoose.Types.ObjectId, ref: "Tag", required: true },
-//   ],
-//   userId: {
-//     unique: true,
-//     type: mongoose.Types.ObjectId,
-//     ref: "User",
-//     required: true,
-//   },
-
-//   groupId: {
-//     type: mongoose.Types.ObjectId,
-//     ref: "group",
-//   },
-
-// });
-
 const AddContentSchema = new mongoose.Schema({
-  title: { unique: true, type: String, required: true },
-  link: { unique: true, type: String },
+  title: { type: String, required: true },
+  link: { type: String },
   tags: [{ type: mongoose.Types.ObjectId, required: true, ref: "Tag" }],
-
-  userId: {
-    unique: true,
-    type: mongoose.Types.ObjectId,
-    required: true,
-    ref: "User",
-  },
+  userId: { type: mongoose.Types.ObjectId, required: true, ref: "User" },
 
   // groupId: {
   //   unique: true,
@@ -50,6 +24,9 @@ const AddContentSchema = new mongoose.Schema({
   //   sparse: true,
   // },
 });
+
+// Add compound unique index for user-specific link uniqueness
+AddContentSchema.index({ link: 1 }, { unique: true });
 
 const AddContentModel = mongoose.model("Contents", AddContentSchema);
 
